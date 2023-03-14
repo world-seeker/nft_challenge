@@ -61,7 +61,7 @@ function Header() {
          <HeartIcon className="navbtn h-6 w-10"/>
          <img
          className="rounded-full h-10 w-10 cursor-pointer" 
-         src="/pp.jpg"
+         src="/mypic.jpg"
          alt="pp"
          />
     </div>
