@@ -4,7 +4,7 @@ import createRandomUser from '../faker';
 
 function Suggestions() {
 
-    const [suggestions, setSuggestions] = useState([{}]);
+    const [suggestions, setSuggestions] = useState<any[]>([]);
     useEffect(() => {
       const suggestions = [...Array(5)].map(() => createRandomUser());
       setSuggestions(suggestions);
