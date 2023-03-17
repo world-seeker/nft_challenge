@@ -8,8 +8,15 @@ import { SearchIcon,
     MenuIcon,
     HomeIcon,
 } from '@heroicons/react/outline';
+import { useSession } from "next-auth/react";
 
 function Header() {
+
+    const {data:session} = useSession();
+   
+      
+
+
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50" >
         <div className="flex mx-auto justify-between max-w-6xl">
@@ -19,14 +26,23 @@ function Header() {
                 className="object-contain"
                 alt={"inst"}
                 src = "https://links.papareact.com/ocw"
-                fill/>
+                fill
+                sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+    />
+                
             </div>
             <div className="relative  w-10 lg:hidden flex-shrink-0 cursor-pointer">
             <Image
                 className="object-contain"
                 alt={"inst"}
                 src = "https://links.papareact.com/jjm"
-                fill/>
+                fill
+                sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+              />
             </div>
            {/**Center */}
           <div className="max-w-xs">
@@ -59,9 +75,10 @@ function Header() {
         <PlusCircleIcon className="navbtn h-6 w-10"/>
         <UserGroupIcon className="navbtn h-6 w-10"/>
          <HeartIcon className="navbtn h-6 w-10"/>
+       
          <img
          className="rounded-full h-10 w-10 cursor-pointer" 
-         src="/mypic.jpg"
+         src={'mypic.jpg'}
          alt="pp"
          />
     </div>

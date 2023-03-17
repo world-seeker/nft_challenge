@@ -9,7 +9,7 @@ const posts=[{
   caption:"yeah this caption!",
 },
 {
-  id:"123",
+  id:"1234",
   username:"swapnil",
   userImg:"mypic.jpg",
   img:"pp.jpg",

@@ -25,12 +25,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 export default function SignIn({  providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	return (
 		<React.Fragment>
-			
+			<div className="flex justify-center ">
 			{Object.values(providers).map((provider) => (
 				<div key={provider.name}>
 					<button onClick={() => signIn(provider.id)}>Sign in with {provider.name}</button>
 				</div>
-			))}
+				
+			))}</div>
 		</React.Fragment>
 	);
 }
