@@ -6,7 +6,7 @@ function Suggestions() {
 
     const [suggestions, setSuggestions] = useState([{}]);
     useEffect(() => {
-      const suggestions = [...Array(5)].map((_,i) => createRandomUser());
+      const suggestions = [...Array(5)].map(() => createRandomUser());
       setSuggestions(suggestions);
   }, []);
 

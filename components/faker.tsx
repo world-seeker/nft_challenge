@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { useState } from "react";
+
 
 export default function createRandomUser() {
 
