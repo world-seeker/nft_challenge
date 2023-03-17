@@ -5,7 +5,7 @@ import Story from "../atoms/Story"
 
 function Stories(){
 
-  const [suggestions, setSuggestions] = useState<any[]>([{}]);
+  const [suggestions, setSuggestions] = useState<any[]>([]);
   useEffect(() => {
     const suggestions = [...Array(20)].map(() => createRandomUser());
     setSuggestions(suggestions);
