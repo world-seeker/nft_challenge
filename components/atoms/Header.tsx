@@ -1,4 +1,6 @@
 import Image from "next/image";
+import {signIn,signOut,useSession} from "next-auth/react"
+
 
 import { SearchIcon,
     PlusCircleIcon,
@@ -8,20 +10,26 @@ import { SearchIcon,
     MenuIcon,
     HomeIcon,
 } from '@heroicons/react/outline';
-import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { modalState } from "../../atoms/modalAtom";
+
+
 
 function Header() {
 
     const {data:session} = useSession();
-   
-      
+    const router = useRouter();
+    const [open,setOpen] = useRecoilState(modalState);
+    
+  
 
 
   return (
-    <div className="shadow-sm border-b bg-white sticky top-0 z-50" >
+    <div className="shadow-sm border-b px-2 bg-white sticky top-0 z-50" >
         <div className="flex mx-auto justify-between max-w-6xl">
             {/** Left */}
-            <div className="relative w-24  hidden lg:inline-grid cursor-pointer ">
+            <div onClick={()=>router.push('/')} className="relative w-24  hidden lg:inline-grid cursor-pointer ">
                 <Image
                 className="object-contain"
                 alt={"inst"}
@@ -30,10 +38,9 @@ function Header() {
                 sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
-    />
-                
+               />         
             </div>
-            <div className="relative  w-10 lg:hidden flex-shrink-0 cursor-pointer">
+            <div onClick={()=>router.push('/')} className="relative  w-10 lg:hidden flex-shrink-0 cursor-pointer">
             <Image
                 className="object-contain"
                 alt={"inst"}
@@ -66,22 +73,35 @@ function Header() {
 
            {/** Right */}
            <div className="flex items-center justify-end space-x-4">
-       <HomeIcon className='h-6 w-10 navbtn'/>
+       <HomeIcon onClick={()=>router.push('/')} className='h-6 w-10 navbtn'/>
        <MenuIcon className='w-12 cursor-pointer md:hidden hover:scale-125 transition-all duration-150 ease-out '/>
-       <div className='relative navbtn'>
+       
+
+        {session ? (
+          <>
+          
+        <div className='relative navbtn'>
         <PaperAirplaneIcon className="rotate-45 h-6 w-10 navbtn hidden md:inline-grid"/>
        <div className="absolute -top-1 -right-2 justify-center text-white text-xs w-5 h-5 bg-red-500 flex md:items-center animate-pulse rounded-full  ">3</div>
        </div>
-        <PlusCircleIcon className="navbtn h-6 w-10"/>
+        <PlusCircleIcon onClick={()=>setOpen(true)} className="navbtn h-6 w-10"/>
         <UserGroupIcon className="navbtn h-6 w-10"/>
          <HeartIcon className="navbtn h-6 w-10"/>
        
          <img
+          onClick={signOut}
          className="rounded-full h-10 w-10 cursor-pointer" 
-         src={'mypic.jpg'}
+         src={session?.user?.image}
          alt="pp"
          />
-    </div>
+         </>
+        ):
+        <button onClick={signIn}>SignIN</button>
+        }
+
+
+      
+       </div>
       
 
 
