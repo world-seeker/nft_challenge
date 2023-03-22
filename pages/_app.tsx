@@ -1,10 +1,15 @@
-
+import { ThirdwebProvider } from "@thirdweb-dev/react";
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 
 
 function MyApp({ Component, pageProps}:AppProps) {
-  return <Component {...pageProps}/>  
+  return (
+  <ThirdwebProvider activeChain="ethereum">
+    <Component {...pageProps}/>
+  </ThirdwebProvider>
+  
+  ) 
   }
 
 export default MyApp
